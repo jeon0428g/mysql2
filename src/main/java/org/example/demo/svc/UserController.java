@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.demo.svc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,6 +66,10 @@ public class UserController {
 
     @PostMapping("/call")
     public void callTestApi(@RequestParam("count") int count) {
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------");
+        userService.clearTable();
+        System.out.println("-----------");
+
         ExecutorService executorService = Executors.newFixedThreadPool(5); // 스레드 풀 생성
         // 모든 작업을 제출하고 결과를 리스트로 수집
         List<Future<Map<String, Object>>> futures = IntStream.range(0, count)
@@ -102,13 +106,13 @@ public class UserController {
             int number = (i + 1);
             Map<String, Object> resultMap = okResults.get(i);
             String value = resultMap.get("ok").toString();
-            if (value.indexOf(",true,") > -1) {
+            if (value.indexOf("user:1") > -1) {
                 userResults.add(number);
             }
-            if (value.indexOf(",true)") > -1) {
+            if (value.indexOf("sub:1") > -1) {
                 subResults.add(number);
             }
-//            if (value.indexOf(",true,") > -1) {
+//            if (value.indexOf("update(false)") > -1) {
 //                System.out.println(String.format("(%s) %s", (i+1), resultMap));
 //            }
             System.out.println(String.format("(%s) %s", (i+1), resultMap));

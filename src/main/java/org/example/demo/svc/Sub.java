@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.demo.svc;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,5 +16,6 @@ public class Sub {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    private Long rid;
 
 }

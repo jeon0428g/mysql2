@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.demo.svc;
 
 import org.springframework.jdbc.core.RowMapper;
 
